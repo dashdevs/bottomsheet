@@ -8,7 +8,7 @@
 import UIKit
 
 open class BottomSheetAnimator: NSObject {
-    /// View that contains animatable view. Don't add gesture recognizers on this view 'cause it does animator
+    /// View that contains animatable view. Don't add gesture recognizers on this view 'cause it animator does
     @IBOutlet public weak var gestureView: UIView! {
         didSet {
             let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureValueChanged(_:)))
