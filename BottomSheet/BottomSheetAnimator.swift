@@ -39,6 +39,8 @@ open class BottomSheetAnimator: NSObject {
         }
     }
     
+    public var previousGesturePosition: CGPoint = .zero
+    
     /// This offset will be added for constraint
     /// Usage example: if screen embed in tab bar controller - you should set tab bar height to this property
     public var additionalOffset: CGFloat = .zero
@@ -59,7 +61,15 @@ open class BottomSheetAnimator: NSObject {
 
 extension BottomSheetAnimator: UIGestureRecognizerDelegate {
     @objc open func panGestureValueChanged(_ gesture: UIPanGestureRecognizer) {
-        
+        let position = gesture.translation(in: gestureView)
+        defer { previousGesturePosition = position }
+        switch gesture.state {
+        case .changed:
+            update(with: previousGesturePosition.y - position.y, animated: false)
+        default:
+            // TODO: Finish updating and scroll to nearest available position
+            break
+        }
     }
     
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -76,10 +86,6 @@ extension BottomSheetAnimator {
         newValue = min(maxHeight, newValue)
         newValue = max(minHeight, newValue)
         setConstraint(newValue, animated: animated)
-    }
-    
-    open func finishUpdate(with offset: CGFloat) {
-        
     }
 }
 
