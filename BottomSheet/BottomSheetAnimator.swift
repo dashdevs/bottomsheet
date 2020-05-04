@@ -40,6 +40,7 @@ open class BottomSheetAnimator: NSObject {
     }
     
     public var previousGesturePosition: CGPoint = .zero
+    public var lastAnimatableScrollViewContentOffset: CGPoint = .zero
     
     /// This offset will be added for constraint
     /// Usage example: if screen embed in tab bar controller - you should set tab bar height to this property
@@ -55,7 +56,24 @@ open class BottomSheetAnimator: NSObject {
         
     /// If you have scroll view inside animatable view - you should handle scroll view delegate and call this method when view is scrolled
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        var contentOffset = scrollView.contentOffset
         
+        if lastAnimatableScrollViewContentOffset.y < contentOffset.y {
+            // Scrolling up
+            if reachedTopPosition {
+                lastAnimatableScrollViewContentOffset = contentOffset
+            } else {
+                scrollView.contentOffset = lastAnimatableScrollViewContentOffset
+            }
+        } else {
+            // Scrolling down
+            if lastAnimatableScrollViewContentOffset.y <= .zero {
+                lastAnimatableScrollViewContentOffset = .zero
+                scrollView.contentOffset = .zero
+            } else {
+                lastAnimatableScrollViewContentOffset = contentOffset
+            }
+        }
     }
 }
 
@@ -65,7 +83,7 @@ extension BottomSheetAnimator: UIGestureRecognizerDelegate {
         defer { previousGesturePosition = position }
         switch gesture.state {
         case .changed:
-            update(with: previousGesturePosition.y - position.y, animated: false)
+            update(with: position.y - previousGesturePosition.y, animated: false)
         default:
             // TODO: Finish updating and scroll to nearest available position
             break
@@ -81,15 +99,38 @@ extension BottomSheetAnimator {
     open func update(with offset: CGFloat, animated: Bool) {
         guard isAvailableScroll(with: offset), let minPosition = availablePositions.first, let maxPosition = availablePositions.last else { return }
         var newValue = animatableConstraint.constant + offset
-        let minHeight = height(for: minPosition)
-        let maxHeight = height(for: maxPosition)
-        newValue = min(maxHeight, newValue)
-        newValue = max(minHeight, newValue)
+        
+        let minPositionHeight = height(for: minPosition)
+        let maxPositionHeight = height(for: maxPosition)
+        
+        // Min position shouldn't be less than zero
+        // For zero min position we will have view.height min position height
+        // In this case animatableView will be under screen as we work with bottom constraint
+        // So min position height shouldn't be greater than view.height
+        newValue = min(minPositionHeight, newValue)
+        
+        // Max position shouldn't be greater than gestureView.height
+        // For gestureView.height max position we will have 0 max position height
+        // In this case animatableView will be fully visible on screen as we work with bottom constraint
+        // So max position height shouldn't be less than zero
+        newValue = max(maxPositionHeight, newValue)
+        
         setConstraint(newValue, animated: animated)
     }
 }
 
 extension BottomSheetAnimator {
+    public var reachedTopPosition: Bool {
+        guard let topPosition = availablePositions.last else { return false }
+        let topPositionHeight = height(for: topPosition)
+        
+        // Top position shouldn't be greater than gestureView.height
+        // For gestureView.height top position we will have 0 top position height
+        // In this case animatableView will be fully visible on screen as we work with bottom constraint
+        // So top position height shouldn't be less than zero
+        return animatableConstraint.constant <= topPositionHeight
+    }
+    
     public var isActiveAnimatableScrollViewGesture: Bool {
         switch animatableScrollView?.panGestureRecognizer.state {
         case .began, .changed, .ended:
@@ -100,16 +141,20 @@ extension BottomSheetAnimator {
     }
     
     open func isAvailableScroll(with offset: CGFloat) -> Bool {
-        guard isActiveAnimatableScrollViewGesture else { return true }
-        if offset > .zero { return true } // scrolling up
-        guard let scrollView = animatableScrollView else { return true }
-        return scrollView.contentOffset.y <= .zero // scrolling down
+        guard let scrollView = animatableScrollView, isActiveAnimatableScrollViewGesture else { return true }
+        
+        if offset < .zero {
+            // Scrolling up
+            return true
+        } else {
+            // Scrolling down
+            return scrollView.contentOffset.y <= .zero
+        }
     }
     
     open func height(for position: CGFloat) -> CGFloat {
-        var height = gestureView.frame.size.height * position
-        height -= gestureView.frame.size.height - additionalOffset
-        return min(0, height)
+        let height = gestureView.frame.size.height - gestureView.frame.size.height * position + additionalOffset
+        return max(0, height)
     }
     
     open func setConstraint(_ constant: CGFloat, animated: Bool) {
