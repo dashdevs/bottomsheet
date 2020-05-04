@@ -8,6 +8,8 @@
 import UIKit
 
 class TableViewController: UITableViewController {
+    var onDidScroll: ((UIScrollView) -> Void)?
+    
     private struct ReuseIdentifiers {
         static let cell = "Cell"
     }
@@ -20,5 +22,9 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: ReuseIdentifiers.cell, for: indexPath)
         cell.textLabel?.text = "Cell \(indexPath.row)"
         return cell
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        onDidScroll?(scrollView)
     }
 }

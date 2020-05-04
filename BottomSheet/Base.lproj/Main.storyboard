@@ -32,8 +32,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="animator" destination="fta-eR-bXM" id="RRo-qN-euR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="fta-eR-bXM" customClass="BottomSheetAnimator" customModule="BottomSheet" customModuleProvider="target">
+                    <connections>
+                        <outlet property="animatableConstraint" destination="yIo-Rd-KSj" id="qek-ZQ-im8"/>
+                        <outlet property="animatableView" destination="Nby-6d-aeB" id="wAJ-Ko-dXk"/>
+                        <outlet property="gestureView" destination="8bC-Xf-vdC" id="j9v-5h-xYs"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="139" y="138"/>
         </scene>

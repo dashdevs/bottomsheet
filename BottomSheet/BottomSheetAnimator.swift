@@ -9,9 +9,18 @@ import UIKit
 
 open class BottomSheetAnimator: NSObject {
     /// View that contains animatable view. Don't add gesture recognizers on this view 'cause it does animator.
-    @IBOutlet public weak var gestureView: UIView!
+    @IBOutlet public weak var gestureView: UIView! {
+        didSet {
+            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureValueChanged(_:)))
+            panGesture.delegate = self
+            gestureView.addGestureRecognizer(panGesture)
+        }
+    }
     
     @IBOutlet public weak var animatableView: UIView!
+    
+    /// If you have scroll view inside animatable view - you should set it to this property
+    @IBOutlet public weak var animatableScrollView: UIScrollView?
     
     /// This should be bottom constraint from animatable view to super view / safe area
     @IBOutlet public weak var animatableConstraint: NSLayoutConstraint!
@@ -40,5 +49,15 @@ open class BottomSheetAnimator: NSObject {
     /// If you have scroll view inside animatable view - you should handle scroll view delegate and call this method when view is scrolled
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
+    }
+}
+
+extension BottomSheetAnimator: UIGestureRecognizerDelegate {
+    @objc open func panGestureValueChanged(_ gesture: UIPanGestureRecognizer) {
+        
+    }
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
