@@ -76,11 +76,12 @@ extension BottomSheetAnimator: UIGestureRecognizerDelegate {
         let position = gesture.translation(in: gestureView)
         defer { previousGesturePosition = position }
         switch gesture.state {
+        case .began:
+            return
         case .changed:
             update(with: position.y - previousGesturePosition.y, animated: false)
         default:
-            // TODO: Finish updating and scroll to nearest available position
-            break
+            finishUpdate(with: position.y - previousGesturePosition.y)
         }
     }
     
@@ -110,6 +111,25 @@ extension BottomSheetAnimator {
         newValue = max(maxPositionHeight, newValue)
         
         setConstraint(newValue, animated: animated)
+    }
+    
+    open func finishUpdate(with offset: CGFloat) {
+        let newValue = animatableConstraint.constant + offset
+        currentPosition = nearestPosition(for: newValue)
+    }
+    
+    open func nearestPosition(for value: CGFloat) -> CGFloat {
+        var closestDistance: CGFloat = .greatestFiniteMagnitude
+        var finalBoundaryValue: CGFloat = availablePositions.first ?? .zero
+        availablePositions.forEach { position in
+            let positionHeight = height(for: position)
+            let diff = abs(positionHeight - value)
+            if diff < closestDistance {
+                closestDistance = diff
+                finalBoundaryValue = position
+            }
+        }
+        return finalBoundaryValue
     }
 }
 
