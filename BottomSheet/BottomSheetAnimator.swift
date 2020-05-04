@@ -55,6 +55,8 @@ open class BottomSheetAnimator: NSObject {
         }
     }
     
+    public var allowChangingPositionOnlyWhenScrollViewIsScrolledUp: Bool = false
+    
     public var previousGesturePosition: CGPoint = .zero
     public var lastAnimatableScrollViewContentOffset: CGPoint = .zero
     
@@ -95,7 +97,13 @@ extension BottomSheetAnimator: UIGestureRecognizerDelegate {
         case .began:
             return
         case .changed:
-            update(with: position.y - previousGesturePosition.y, animated: false)
+            let newValue = position.y - previousGesturePosition.y
+            if needsToScrollInsteadChangingPosition {
+                let yContentOffset = animatableScrollView!.contentOffset.y - newValue
+                animatableScrollView?.contentOffset.y = max(.zero, yContentOffset)
+            } else {
+                update(with: newValue, animated: false)
+            }
         default:
             finishUpdate(with: position.y - previousGesturePosition.y)
         }
@@ -193,5 +201,10 @@ extension BottomSheetAnimator {
         UIView.animate(withDuration: animationDuration) {
             self.gestureView.layoutIfNeeded()
         }
+    }
+    
+    public var needsToScrollInsteadChangingPosition: Bool {
+        guard allowChangingPositionOnlyWhenScrollViewIsScrolledUp, let scrollView = animatableScrollView else { return false }
+        return scrollView.contentOffset.y > 0
     }
 }
