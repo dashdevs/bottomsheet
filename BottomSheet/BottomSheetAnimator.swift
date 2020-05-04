@@ -90,6 +90,7 @@ open class BottomSheetAnimator: NSObject {
             // Scrolling down
             if lastAnimatableScrollViewContentOffset.y <= .zero {
                 lastAnimatableScrollViewContentOffset = .zero
+                guard !isAnimatableViewAtBottom else { return }
                 scrollView.contentOffset = .zero
             } else {
                 lastAnimatableScrollViewContentOffset = contentOffset
@@ -218,5 +219,10 @@ extension BottomSheetAnimator {
         // If we scrolling up from top position - we should allow scrolling child scroll view
         // If we scrolling down from top position - we should allow scrolling only when content offset is greater than zero
         return scrollView.contentOffset.y > 0 || direction == .up
+    }
+    
+    public var isAnimatableViewAtBottom: Bool {
+        guard let minPosition = availablePositions.first else { return false }
+        return animatableConstraint.constant == height(for: minPosition)
     }
 }
