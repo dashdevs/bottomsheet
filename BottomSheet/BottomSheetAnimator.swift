@@ -8,7 +8,7 @@
 import UIKit
 
 open class BottomSheetAnimator: NSObject {
-    /// View that contains animatable view. Don't add gesture recognizers on this view 'cause it does animator.
+    /// View that contains animatable view. Don't add gesture recognizers on this view 'cause it does animator
     @IBOutlet public weak var gestureView: UIView! {
         didSet {
             let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureValueChanged(_:)))
@@ -47,16 +47,10 @@ open class BottomSheetAnimator: NSObject {
     public var additionalOffset: CGFloat = .zero
     
     public var animationDuration: TimeInterval = CATransaction.animationDuration()
-    
-    /// This method used to set first available position to current position and update layout
-    /// You should call this method after updating availablePositions
-    open func updateCurrentPosition() {
-        currentPosition = availablePositions.first ?? .zero
-    }
         
     /// If you have scroll view inside animatable view - you should handle scroll view delegate and call this method when view is scrolled
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        var contentOffset = scrollView.contentOffset
+        let contentOffset = scrollView.contentOffset
         
         if lastAnimatableScrollViewContentOffset.y < contentOffset.y {
             // Scrolling up

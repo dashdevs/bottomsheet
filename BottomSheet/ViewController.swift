@@ -10,6 +10,12 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var animator: BottomSheetAnimator!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        animator.availablePositions = [0.2, 0.5, 0.9]
+        animator.currentPosition = 0.2
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.destination {
         case let viewController as TableViewController:
