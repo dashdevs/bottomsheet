@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nby-6d-aeB">
-                                <rect key="frame" x="0.0" y="420" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <connections>
                                     <segue destination="0ct-lC-Afe" kind="embed" id="dFU-yE-7Ju"/>
                                 </connections>
@@ -28,7 +28,7 @@
                             <constraint firstItem="Nby-6d-aeB" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="4yY-G0-4yp"/>
                             <constraint firstItem="Nby-6d-aeB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ETV-xo-1cE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Nby-6d-aeB" secondAttribute="trailing" id="Mic-uy-Mjx"/>
-                            <constraint firstItem="Nby-6d-aeB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="420" id="yiY-lh-ZlL"/>
+                            <constraint firstItem="Nby-6d-aeB" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="yIo-Rd-KSj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
