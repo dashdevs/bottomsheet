@@ -13,6 +13,7 @@
 		75B01F9D245C5D1F007F2340 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75B01F9C245C5D1F007F2340 /* Assets.xcassets */; };
 		75B01FA0245C5D1F007F2340 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75B01F9E245C5D1F007F2340 /* LaunchScreen.storyboard */; };
 		75B01FA8245C63F1007F2340 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B01FA7245C63F1007F2340 /* TableViewController.swift */; };
+		75B01FAA245C69DF007F2340 /* BottomSheetAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B01FA9245C69DF007F2340 /* BottomSheetAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		75B01F9F245C5D1F007F2340 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75B01FA1245C5D1F007F2340 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75B01FA7245C63F1007F2340 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		75B01FA9245C69DF007F2340 /* BottomSheetAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				75B01F93245C5D1D007F2340 /* AppDelegate.swift */,
 				75B01F97245C5D1D007F2340 /* ViewController.swift */,
 				75B01FA7245C63F1007F2340 /* TableViewController.swift */,
+				75B01FA9245C69DF007F2340 /* BottomSheetAnimator.swift */,
 				75B01F99245C5D1D007F2340 /* Main.storyboard */,
 				75B01F9C245C5D1F007F2340 /* Assets.xcassets */,
 				75B01F9E245C5D1F007F2340 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75B01F98245C5D1D007F2340 /* ViewController.swift in Sources */,
+				75B01FAA245C69DF007F2340 /* BottomSheetAnimator.swift in Sources */,
 				75B01FA8245C63F1007F2340 /* TableViewController.swift in Sources */,
 				75B01F94245C5D1D007F2340 /* AppDelegate.swift in Sources */,
 			);
