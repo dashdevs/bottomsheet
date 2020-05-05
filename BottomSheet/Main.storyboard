@@ -38,22 +38,33 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2v-Ha-YIo">
-                                <rect key="frame" x="64" y="220" width="192" height="30"/>
+                                <rect key="frame" x="64" y="280" width="192" height="30"/>
                                 <state key="normal" title="Embed in Custom Container"/>
                                 <connections>
                                     <action selector="embedInCustomContainer" destination="EnS-dm-mQd" eventType="touchUpInside" id="cPv-4C-6uD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4ku-vo-gau">
+                                <rect key="frame" x="16" y="220" width="288" height="30"/>
+                                <state key="normal" title="Embed in Tab Bar + Navigation View Controller"/>
+                                <connections>
+                                    <action selector="embedInTabBarAndNavigationViewController" destination="EnS-dm-mQd" eventType="touchUpInside" id="oHc-0f-0rd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="K2v-Ha-YIo" firstAttribute="top" secondItem="4ku-vo-gau" secondAttribute="bottom" constant="30" id="G9n-3n-eBG"/>
                             <constraint firstItem="K2v-Ha-YIo" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="R6d-jH-zBu"/>
                             <constraint firstItem="riM-bz-fok" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="RN2-nS-7Gv"/>
+                            <constraint firstItem="4ku-vo-gau" firstAttribute="top" secondItem="riM-bz-fok" secondAttribute="bottom" constant="30" id="S1P-OQ-qZm"/>
+                            <constraint firstItem="kWs-0D-Gb7" firstAttribute="trailing" secondItem="4ku-vo-gau" secondAttribute="trailing" constant="16" id="WMm-K4-VC2"/>
                             <constraint firstItem="riM-bz-fok" firstAttribute="top" secondItem="Aza-sO-dtC" secondAttribute="bottom" constant="30" id="ZVL-eK-mMw"/>
-                            <constraint firstItem="K2v-Ha-YIo" firstAttribute="top" secondItem="riM-bz-fok" secondAttribute="bottom" constant="30" id="aGG-ms-WZv"/>
+                            <constraint firstItem="4ku-vo-gau" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="f24-Mz-O2T"/>
                             <constraint firstItem="UV2-rf-GeO" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="fqc-0G-iJc"/>
                             <constraint firstItem="Aza-sO-dtC" firstAttribute="top" secondItem="UV2-rf-GeO" secondAttribute="bottom" constant="30" id="gPv-r7-GjK"/>
                             <constraint firstItem="Aza-sO-dtC" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="jH9-Ns-hlo"/>
+                            <constraint firstItem="4ku-vo-gau" firstAttribute="leading" secondItem="kWs-0D-Gb7" secondAttribute="leading" constant="16" id="jUH-r6-KUa"/>
                             <constraint firstItem="UV2-rf-GeO" firstAttribute="top" secondItem="kWs-0D-Gb7" secondAttribute="top" constant="40" id="odU-CC-z1c"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kWs-0D-Gb7"/>
