@@ -183,7 +183,7 @@ extension BottomSheetAnimator {
     }
     
     open func height(for position: Position) -> CGFloat {
-        let height = gestureView.frame.size.height - gestureView.frame.size.height * position.value + additionalOffset
+        let height = gestureView.frame.size.height - gestureView.frame.size.height * position.value - additionalOffset
         return max(0, height)
     }
     

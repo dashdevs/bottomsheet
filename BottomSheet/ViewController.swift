@@ -17,6 +17,11 @@ class ViewController: UIViewController {
         guard let vc = UIStoryboard(name: "Navigation", bundle: nil).instantiateInitialViewController() else { return }
         present(vc, animated: true)
     }
+    
+    @IBAction func embedInTabBarViewController() {
+        guard let vc = UIStoryboard(name: "TabBar", bundle: nil).instantiateInitialViewController() else { return }
+        present(vc, animated: true)
+    }
 }
 
 extension UIViewController {

@@ -30,9 +30,18 @@
                                     <action selector="embedInNavigationViewController" destination="EnS-dm-mQd" eventType="touchUpInside" id="9FE-Qf-C02"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="riM-bz-fok">
+                                <rect key="frame" x="45.5" y="160" width="229" height="30"/>
+                                <state key="normal" title="Embed in Tab Bar View Controller"/>
+                                <connections>
+                                    <action selector="embedInTabBarViewController" destination="EnS-dm-mQd" eventType="touchUpInside" id="ObT-je-9ch"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="riM-bz-fok" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="RN2-nS-7Gv"/>
+                            <constraint firstItem="riM-bz-fok" firstAttribute="top" secondItem="Aza-sO-dtC" secondAttribute="bottom" constant="30" id="ZVL-eK-mMw"/>
                             <constraint firstItem="UV2-rf-GeO" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="fqc-0G-iJc"/>
                             <constraint firstItem="Aza-sO-dtC" firstAttribute="top" secondItem="UV2-rf-GeO" secondAttribute="bottom" constant="30" id="gPv-r7-GjK"/>
                             <constraint firstItem="Aza-sO-dtC" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="jH9-Ns-hlo"/>

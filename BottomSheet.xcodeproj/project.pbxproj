@@ -17,6 +17,9 @@
 		75CCDD922461937F00AEEEC4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CCDD912461937F00AEEEC4 /* ViewController.swift */; };
 		75CCDD95246193C400AEEEC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75CCDD94246193C400AEEEC4 /* Main.storyboard */; };
 		75CCDD982461968900AEEEC4 /* Navigation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75CCDD972461968900AEEEC4 /* Navigation.storyboard */; };
+		75CCDD9B246197C100AEEEC4 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75CCDD9A246197C100AEEEC4 /* TabBar.storyboard */; };
+		75CCDD9D2461998B00AEEEC4 /* TabBarRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CCDD9C2461998B00AEEEC4 /* TabBarRootViewController.swift */; };
+		75CCDDA224619A3600AEEEC4 /* NavigationRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CCDDA124619A3600AEEEC4 /* NavigationRootViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		75CCDD912461937F00AEEEC4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		75CCDD94246193C400AEEEC4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		75CCDD972461968900AEEEC4 /* Navigation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Navigation.storyboard; sourceTree = "<group>"; };
+		75CCDD9A246197C100AEEEC4 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		75CCDD9C2461998B00AEEEC4 /* TabBarRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRootViewController.swift; sourceTree = "<group>"; };
+		75CCDDA124619A3600AEEEC4 /* NavigationRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRootViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,12 +85,39 @@
 		75CCDD902461935400AEEEC4 /* Examples */ = {
 			isa = PBXGroup;
 			children = (
-				75CCDD972461968900AEEEC4 /* Navigation.storyboard */,
-				75B01F99245C5D1D007F2340 /* Plain.storyboard */,
-				75B01F97245C5D1D007F2340 /* PlainViewController.swift */,
+				75CCDDA024619A2800AEEEC4 /* Navigation */,
+				75CCDD9E24619A1100AEEEC4 /* Plain */,
+				75CCDD9F24619A1B00AEEEC4 /* TabBar */,
 				75B01FA7245C63F1007F2340 /* TableViewController.swift */,
 			);
 			path = Examples;
+			sourceTree = "<group>";
+		};
+		75CCDD9E24619A1100AEEEC4 /* Plain */ = {
+			isa = PBXGroup;
+			children = (
+				75B01F99245C5D1D007F2340 /* Plain.storyboard */,
+				75B01F97245C5D1D007F2340 /* PlainViewController.swift */,
+			);
+			path = Plain;
+			sourceTree = "<group>";
+		};
+		75CCDD9F24619A1B00AEEEC4 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				75CCDD9A246197C100AEEEC4 /* TabBar.storyboard */,
+				75CCDD9C2461998B00AEEEC4 /* TabBarRootViewController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		75CCDDA024619A2800AEEEC4 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				75CCDD972461968900AEEEC4 /* Navigation.storyboard */,
+				75CCDDA124619A3600AEEEC4 /* NavigationRootViewController.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +182,7 @@
 				75B01F9D245C5D1F007F2340 /* Assets.xcassets in Resources */,
 				75CCDD982461968900AEEEC4 /* Navigation.storyboard in Resources */,
 				75B01F9B245C5D1D007F2340 /* Plain.storyboard in Resources */,
+				75CCDD9B246197C100AEEEC4 /* TabBar.storyboard in Resources */,
 				75CCDD95246193C400AEEEC4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,9 +196,11 @@
 			files = (
 				75CCDD922461937F00AEEEC4 /* ViewController.swift in Sources */,
 				75B01F98245C5D1D007F2340 /* PlainViewController.swift in Sources */,
+				75CCDD9D2461998B00AEEEC4 /* TabBarRootViewController.swift in Sources */,
 				75B01FAA245C69DF007F2340 /* BottomSheetAnimator.swift in Sources */,
 				75B01FA8245C63F1007F2340 /* TableViewController.swift in Sources */,
 				75B01F94245C5D1D007F2340 /* AppDelegate.swift in Sources */,
+				75CCDDA224619A3600AEEEC4 /* NavigationRootViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
