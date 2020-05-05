@@ -9,9 +9,15 @@ import UIKit
 
 class TableViewController: UITableViewController {
     var onDidScroll: ((UIScrollView) -> Void)?
+    var onViewDidLoad: (() -> Void)?
     
     private struct ReuseIdentifiers {
         static let cell = "Cell"
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        onViewDidLoad?()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
