@@ -20,6 +20,8 @@
 		75CCDD9B246197C100AEEEC4 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75CCDD9A246197C100AEEEC4 /* TabBar.storyboard */; };
 		75CCDD9D2461998B00AEEEC4 /* TabBarRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CCDD9C2461998B00AEEEC4 /* TabBarRootViewController.swift */; };
 		75CCDDA224619A3600AEEEC4 /* NavigationRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CCDDA124619A3600AEEEC4 /* NavigationRootViewController.swift */; };
+		75CCDDA524619B4800AEEEC4 /* CustomContainer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75CCDDA424619B4800AEEEC4 /* CustomContainer.storyboard */; };
+		75CCDDA72461A01700AEEEC4 /* CustomContainerRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CCDDA62461A01700AEEEC4 /* CustomContainerRootViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		75CCDD9A246197C100AEEEC4 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		75CCDD9C2461998B00AEEEC4 /* TabBarRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRootViewController.swift; sourceTree = "<group>"; };
 		75CCDDA124619A3600AEEEC4 /* NavigationRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRootViewController.swift; sourceTree = "<group>"; };
+		75CCDDA424619B4800AEEEC4 /* CustomContainer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomContainer.storyboard; sourceTree = "<group>"; };
+		75CCDDA62461A01700AEEEC4 /* CustomContainerRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContainerRootViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 		75CCDD902461935400AEEEC4 /* Examples */ = {
 			isa = PBXGroup;
 			children = (
+				75CCDDA324619B3D00AEEEC4 /* CustomContainer */,
 				75CCDDA024619A2800AEEEC4 /* Navigation */,
 				75CCDD9E24619A1100AEEEC4 /* Plain */,
 				75CCDD9F24619A1B00AEEEC4 /* TabBar */,
@@ -118,6 +123,15 @@
 				75CCDDA124619A3600AEEEC4 /* NavigationRootViewController.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		75CCDDA324619B3D00AEEEC4 /* CustomContainer */ = {
+			isa = PBXGroup;
+			children = (
+				75CCDDA424619B4800AEEEC4 /* CustomContainer.storyboard */,
+				75CCDDA62461A01700AEEEC4 /* CustomContainerRootViewController.swift */,
+			);
+			path = CustomContainer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +197,7 @@
 				75CCDD982461968900AEEEC4 /* Navigation.storyboard in Resources */,
 				75B01F9B245C5D1D007F2340 /* Plain.storyboard in Resources */,
 				75CCDD9B246197C100AEEEC4 /* TabBar.storyboard in Resources */,
+				75CCDDA524619B4800AEEEC4 /* CustomContainer.storyboard in Resources */,
 				75CCDD95246193C400AEEEC4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,6 +212,7 @@
 				75CCDD922461937F00AEEEC4 /* ViewController.swift in Sources */,
 				75B01F98245C5D1D007F2340 /* PlainViewController.swift in Sources */,
 				75CCDD9D2461998B00AEEEC4 /* TabBarRootViewController.swift in Sources */,
+				75CCDDA72461A01700AEEEC4 /* CustomContainerRootViewController.swift in Sources */,
 				75B01FAA245C69DF007F2340 /* BottomSheetAnimator.swift in Sources */,
 				75B01FA8245C63F1007F2340 /* TableViewController.swift in Sources */,
 				75B01F94245C5D1D007F2340 /* AppDelegate.swift in Sources */,

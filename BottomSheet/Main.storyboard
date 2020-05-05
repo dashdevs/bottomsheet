@@ -37,11 +37,20 @@
                                     <action selector="embedInTabBarViewController" destination="EnS-dm-mQd" eventType="touchUpInside" id="ObT-je-9ch"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2v-Ha-YIo">
+                                <rect key="frame" x="64" y="220" width="192" height="30"/>
+                                <state key="normal" title="Embed in Custom Container"/>
+                                <connections>
+                                    <action selector="embedInCustomContainer" destination="EnS-dm-mQd" eventType="touchUpInside" id="cPv-4C-6uD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="K2v-Ha-YIo" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="R6d-jH-zBu"/>
                             <constraint firstItem="riM-bz-fok" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="RN2-nS-7Gv"/>
                             <constraint firstItem="riM-bz-fok" firstAttribute="top" secondItem="Aza-sO-dtC" secondAttribute="bottom" constant="30" id="ZVL-eK-mMw"/>
+                            <constraint firstItem="K2v-Ha-YIo" firstAttribute="top" secondItem="riM-bz-fok" secondAttribute="bottom" constant="30" id="aGG-ms-WZv"/>
                             <constraint firstItem="UV2-rf-GeO" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="fqc-0G-iJc"/>
                             <constraint firstItem="Aza-sO-dtC" firstAttribute="top" secondItem="UV2-rf-GeO" secondAttribute="bottom" constant="30" id="gPv-r7-GjK"/>
                             <constraint firstItem="Aza-sO-dtC" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="jH9-Ns-hlo"/>
