@@ -12,8 +12,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        animator.availablePositions = [0.2, 0.5, 0.9]
-        animator.currentPosition = 0.2
+        animator.availablePositions = [.bottom, .middle, .custom(1)]
+        animator.currentPosition = .bottom
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

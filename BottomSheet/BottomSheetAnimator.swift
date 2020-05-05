@@ -8,6 +8,26 @@
 import UIKit
 
 open class BottomSheetAnimator: NSObject {
+    /// This enum described animatable view position
+    public enum Position {
+        case bottom
+        case middle
+        case top
+        case custom(CGFloat)
+        
+        var value: CGFloat {
+            switch self {
+            case .bottom: return 0.2
+            case .middle: return 0.5
+            case .top: return 0.8
+            /// available range: from 0 to 1
+            /// min value = 0 - animatable view will be under super view / safe area
+            /// max value = 1 - animatable view will be visible on full screen
+            case .custom(let value): return value
+            }
+        }
+    }
+    
     /// View that contains animatable view. Don't add gesture recognizers on this view 'cause it animator does
     @IBOutlet public weak var gestureView: UIView! {
         didSet {
@@ -26,14 +46,10 @@ open class BottomSheetAnimator: NSObject {
     @IBOutlet public weak var animatableConstraint: NSLayoutConstraint!
     
     /// This array should contains at least 2 values
-    /// min value = 0 - animatable view will be under super view / safe area
-    /// max value = 1 - animatable view will be visible on full screen
-    public var availablePositions: [CGFloat] = [0.5, 1]
+    public var availablePositions: [Position] = [.bottom, .middle, .top]
 
     /// Animatable view current position
-    /// min value = 0 - animatable view will be under super view / safe area
-    /// max value = 1 - animatable view will be visible on full screen
-    public var currentPosition: CGFloat = .zero {
+    public var currentPosition: Position = .bottom {
         didSet {
             setConstraint(height(for: currentPosition), animated: true)
         }
@@ -118,18 +134,18 @@ extension BottomSheetAnimator {
         currentPosition = nearestPosition(for: newValue)
     }
     
-    open func nearestPosition(for value: CGFloat) -> CGFloat {
+    open func nearestPosition(for value: CGFloat) -> Position {
         var closestDistance: CGFloat = .greatestFiniteMagnitude
-        var finalBoundaryValue: CGFloat = availablePositions.first ?? .zero
+        var finalBoundaryPosition: Position = availablePositions.first ?? currentPosition
         availablePositions.forEach { position in
             let positionHeight = height(for: position)
             let diff = abs(positionHeight - value)
             if diff < closestDistance {
                 closestDistance = diff
-                finalBoundaryValue = position
+                finalBoundaryPosition = position
             }
         }
-        return finalBoundaryValue
+        return finalBoundaryPosition
     }
 }
 
@@ -166,8 +182,8 @@ extension BottomSheetAnimator {
         }
     }
     
-    open func height(for position: CGFloat) -> CGFloat {
-        let height = gestureView.frame.size.height - gestureView.frame.size.height * position + additionalOffset
+    open func height(for position: Position) -> CGFloat {
+        let height = gestureView.frame.size.height - gestureView.frame.size.height * position.value + additionalOffset
         return max(0, height)
     }
     
