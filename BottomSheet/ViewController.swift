@@ -8,8 +8,13 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBAction func plainViewController() {
+    @IBAction func embedInPlainViewController() {
         guard let vc = UIStoryboard(name: "Plain", bundle: nil).instantiateInitialViewController() else { return }
+        present(vc, animated: true)
+    }
+    
+    @IBAction func embedInNavigationViewController() {
+        guard let vc = UIStoryboard(name: "Navigation", bundle: nil).instantiateInitialViewController() else { return }
         present(vc, animated: true)
     }
 }
