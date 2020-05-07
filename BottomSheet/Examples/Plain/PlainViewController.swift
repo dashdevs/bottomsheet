@@ -10,6 +10,11 @@ import UIKit
 class PlainViewController: UIViewController {
     @IBOutlet weak var animator: BottomSheetAnimator!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        presentationController?.delegate = self
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.destination {
         case let viewController as TableViewController:
@@ -25,5 +30,11 @@ class PlainViewController: UIViewController {
         default:
             super.prepare(for: segue, sender: sender)
         }
+    }
+}
+
+extension PlainViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        return false
     }
 }

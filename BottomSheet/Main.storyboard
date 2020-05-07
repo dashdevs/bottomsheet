@@ -16,36 +16,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UV2-rf-GeO">
-                                <rect key="frame" x="55" y="40" width="210" height="30"/>
-                                <state key="normal" title="Embed in Plain View Controller"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="UV2-rf-GeO">
+                                <rect key="frame" x="16" y="40" width="288" height="48"/>
+                                <state key="normal" title="Embed in Plain View Controller (iOS 13 modal presentation issue)"/>
                                 <connections>
                                     <action selector="embedInPlainViewController" destination="EnS-dm-mQd" eventType="touchUpInside" id="ptt-1v-Urf"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aza-sO-dtC">
-                                <rect key="frame" x="35" y="100" width="250" height="30"/>
+                                <rect key="frame" x="35" y="118" width="250" height="30"/>
                                 <state key="normal" title="Embed in Navigation View Controller"/>
                                 <connections>
                                     <action selector="embedInNavigationViewController" destination="EnS-dm-mQd" eventType="touchUpInside" id="9FE-Qf-C02"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="riM-bz-fok">
-                                <rect key="frame" x="45.5" y="160" width="229" height="30"/>
+                                <rect key="frame" x="45.5" y="178" width="229" height="30"/>
                                 <state key="normal" title="Embed in Tab Bar View Controller"/>
                                 <connections>
                                     <action selector="embedInTabBarViewController" destination="EnS-dm-mQd" eventType="touchUpInside" id="ObT-je-9ch"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K2v-Ha-YIo">
-                                <rect key="frame" x="64" y="280" width="192" height="30"/>
+                                <rect key="frame" x="64" y="298" width="192" height="30"/>
                                 <state key="normal" title="Embed in Custom Container"/>
                                 <connections>
                                     <action selector="embedInCustomContainer" destination="EnS-dm-mQd" eventType="touchUpInside" id="cPv-4C-6uD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4ku-vo-gau">
-                                <rect key="frame" x="16" y="220" width="288" height="30"/>
+                                <rect key="frame" x="16" y="238" width="288" height="30"/>
                                 <state key="normal" title="Embed in Tab Bar + Navigation View Controller"/>
                                 <connections>
                                     <action selector="embedInTabBarAndNavigationViewController" destination="EnS-dm-mQd" eventType="touchUpInside" id="oHc-0f-0rd"/>
@@ -54,11 +54,13 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="kWs-0D-Gb7" firstAttribute="trailing" secondItem="UV2-rf-GeO" secondAttribute="trailing" constant="16" id="5vY-Fc-6ab"/>
                             <constraint firstItem="K2v-Ha-YIo" firstAttribute="top" secondItem="4ku-vo-gau" secondAttribute="bottom" constant="30" id="G9n-3n-eBG"/>
                             <constraint firstItem="K2v-Ha-YIo" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="R6d-jH-zBu"/>
                             <constraint firstItem="riM-bz-fok" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="RN2-nS-7Gv"/>
                             <constraint firstItem="4ku-vo-gau" firstAttribute="top" secondItem="riM-bz-fok" secondAttribute="bottom" constant="30" id="S1P-OQ-qZm"/>
                             <constraint firstItem="kWs-0D-Gb7" firstAttribute="trailing" secondItem="4ku-vo-gau" secondAttribute="trailing" constant="16" id="WMm-K4-VC2"/>
+                            <constraint firstItem="UV2-rf-GeO" firstAttribute="leading" secondItem="kWs-0D-Gb7" secondAttribute="leading" constant="16" id="ZJJ-Jx-BPT"/>
                             <constraint firstItem="riM-bz-fok" firstAttribute="top" secondItem="Aza-sO-dtC" secondAttribute="bottom" constant="30" id="ZVL-eK-mMw"/>
                             <constraint firstItem="4ku-vo-gau" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="f24-Mz-O2T"/>
                             <constraint firstItem="UV2-rf-GeO" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="fqc-0G-iJc"/>
