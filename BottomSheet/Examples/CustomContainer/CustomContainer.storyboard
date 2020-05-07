@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="KKH-sm-TAF">
             <objects>
-                <viewController id="BrX-pL-EdS" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="BrX-pL-EdS" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Fn-va-AxX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -49,14 +49,6 @@
         <!--Example-->
         <scene sceneID="BUL-Ax-lx9">
             <objects>
-                <customObject id="E9f-Bv-qmf" customClass="BottomSheetAnimator" customModule="BottomSheet" customModuleProvider="target">
-                    <connections>
-                        <outlet property="animatableConstraint" destination="eVs-Pp-ISg" id="8qP-Yf-IDf"/>
-                        <outlet property="animatableView" destination="2d0-Rr-cGi" id="kji-3x-Paw"/>
-                        <outlet property="gestureView" destination="tV1-7B-a69" id="3CY-IA-s0n"/>
-                    </connections>
-                </customObject>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="psh-G3-fko" sceneMemberID="firstResponder"/>
                 <viewController title="Example" id="Nd5-QS-yfe" customClass="CustomContainerRootViewController" customModule="BottomSheet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tV1-7B-a69">
                         <rect key="frame" x="0.0" y="0.0" width="240" height="284"/>
@@ -82,6 +74,14 @@
                         <outlet property="animator" destination="E9f-Bv-qmf" id="dwv-5V-yH7"/>
                     </connections>
                 </viewController>
+                <customObject id="E9f-Bv-qmf" customClass="BottomSheetAnimator" customModule="BottomSheet" customModuleProvider="target">
+                    <connections>
+                        <outlet property="animatableConstraint" destination="eVs-Pp-ISg" id="8qP-Yf-IDf"/>
+                        <outlet property="animatableView" destination="2d0-Rr-cGi" id="kji-3x-Paw"/>
+                        <outlet property="gestureView" destination="tV1-7B-a69" id="3CY-IA-s0n"/>
+                    </connections>
+                </customObject>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="psh-G3-fko" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="694" y="101"/>
         </scene>

@@ -11,7 +11,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ShG-dv-f6Y">
             <objects>
-                <navigationController id="MPc-w5-ZBf" sceneMemberID="viewController">
+                <navigationController modalPresentationStyle="fullScreen" id="MPc-w5-ZBf" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Nmg-jV-jFj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
