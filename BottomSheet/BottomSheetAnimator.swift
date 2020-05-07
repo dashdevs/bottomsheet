@@ -28,6 +28,15 @@ open class BottomSheetAnimator: NSObject {
         }
     }
     
+    public enum PanGestureDirection {
+        case up
+        case down
+        
+        init(_ value: CGFloat) {
+            self = value.isLess(than: .zero) ? .up : .down
+        }
+    }
+    
     /// View that contains animatable view. Don't add gesture recognizers on this view 'cause it animator does
     @IBOutlet public weak var gestureView: UIView! {
         didSet {
@@ -98,7 +107,7 @@ extension BottomSheetAnimator: UIGestureRecognizerDelegate {
             return
         case .changed:
             let newValue = position.y - previousGesturePosition.y
-            if needsToScrollInsteadChangingPosition {
+            if needsToScrollInsteadChangingPosition(for: PanGestureDirection(newValue)) {
                 let yContentOffset = animatableScrollView!.contentOffset.y - newValue
                 animatableScrollView?.contentOffset.y = max(.zero, yContentOffset)
             } else {
@@ -203,8 +212,11 @@ extension BottomSheetAnimator {
         }
     }
     
-    public var needsToScrollInsteadChangingPosition: Bool {
-        guard allowChangingPositionOnlyWhenScrollViewIsScrolledUp, let scrollView = animatableScrollView else { return false }
-        return scrollView.contentOffset.y > 0
+    open func needsToScrollInsteadChangingPosition(for direction: PanGestureDirection) -> Bool {
+        guard allowChangingPositionOnlyWhenScrollViewIsScrolledUp, let scrollView = animatableScrollView, !scrollView.isDragging else { return false }
+        guard let topPosition = availablePositions.last, animatableConstraint.constant == height(for: topPosition) else { return false }
+        // If we scrolling up from top position - we should allow scrolling child scroll view
+        // If we scrolling down from top position - we should allow scrolling only when content offset is greater than zero
+        return scrollView.contentOffset.y > 0 || direction == .up
     }
 }
