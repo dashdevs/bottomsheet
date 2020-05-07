@@ -51,10 +51,18 @@
                                     <action selector="embedInTabBarAndNavigationViewController" destination="EnS-dm-mQd" eventType="touchUpInside" id="oHc-0f-0rd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lnf-xG-3BR">
+                                <rect key="frame" x="23.5" y="358" width="273" height="30"/>
+                                <state key="normal" title="Scroll Outside Child Scroll View Allowed"/>
+                                <connections>
+                                    <action selector="scrollOutsideChildScrollViewAllowed" destination="EnS-dm-mQd" eventType="touchUpInside" id="N55-Qj-NXf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="kWs-0D-Gb7" firstAttribute="trailing" secondItem="UV2-rf-GeO" secondAttribute="trailing" constant="16" id="5vY-Fc-6ab"/>
+                            <constraint firstItem="Lnf-xG-3BR" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="6mF-Jj-wIh"/>
                             <constraint firstItem="K2v-Ha-YIo" firstAttribute="top" secondItem="4ku-vo-gau" secondAttribute="bottom" constant="30" id="G9n-3n-eBG"/>
                             <constraint firstItem="K2v-Ha-YIo" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="R6d-jH-zBu"/>
                             <constraint firstItem="riM-bz-fok" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="RN2-nS-7Gv"/>
@@ -68,6 +76,7 @@
                             <constraint firstItem="Aza-sO-dtC" firstAttribute="centerX" secondItem="bLf-G6-oky" secondAttribute="centerX" id="jH9-Ns-hlo"/>
                             <constraint firstItem="4ku-vo-gau" firstAttribute="leading" secondItem="kWs-0D-Gb7" secondAttribute="leading" constant="16" id="jUH-r6-KUa"/>
                             <constraint firstItem="UV2-rf-GeO" firstAttribute="top" secondItem="kWs-0D-Gb7" secondAttribute="top" constant="40" id="odU-CC-z1c"/>
+                            <constraint firstItem="Lnf-xG-3BR" firstAttribute="top" secondItem="K2v-Ha-YIo" secondAttribute="bottom" constant="30" id="rAY-cc-m48"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kWs-0D-Gb7"/>
                     </view>

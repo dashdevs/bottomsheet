@@ -32,6 +32,11 @@ class ViewController: UIViewController {
         guard let vc = UIStoryboard(name: "CustomContainer", bundle: nil).instantiateInitialViewController() else { return }
         present(vc, animated: true)
     }
+    
+    @IBAction func scrollOutsideChildScrollViewAllowed() {
+        guard let vc = UIStoryboard(name: "ScrollExample", bundle: nil).instantiateInitialViewController() else { return }
+        present(vc, animated: true)
+    }
 }
 
 extension UIViewController {

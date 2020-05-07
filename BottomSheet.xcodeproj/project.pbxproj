@@ -24,6 +24,8 @@
 		75CCDDA72461A01700AEEEC4 /* CustomContainerRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CCDDA62461A01700AEEEC4 /* CustomContainerRootViewController.swift */; };
 		75CCDDAA2461A4B100AEEEC4 /* TabBar+Navigation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75CCDDA92461A4B100AEEEC4 /* TabBar+Navigation.storyboard */; };
 		75CCDDAC2461A5CE00AEEEC4 /* TabBar+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75CCDDAB2461A5CE00AEEEC4 /* TabBar+Navigation.swift */; };
+		75E4195B246422C60099D193 /* ScrollExample.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75E4195A246422C60099D193 /* ScrollExample.storyboard */; };
+		75E4195D246422DB0099D193 /* ScrollExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E4195C246422DB0099D193 /* ScrollExampleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		75CCDDA62461A01700AEEEC4 /* CustomContainerRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContainerRootViewController.swift; sourceTree = "<group>"; };
 		75CCDDA92461A4B100AEEEC4 /* TabBar+Navigation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "TabBar+Navigation.storyboard"; sourceTree = "<group>"; };
 		75CCDDAB2461A5CE00AEEEC4 /* TabBar+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TabBar+Navigation.swift"; sourceTree = "<group>"; };
+		75E4195A246422C60099D193 /* ScrollExample.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScrollExample.storyboard; sourceTree = "<group>"; };
+		75E4195C246422DB0099D193 /* ScrollExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollExampleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,7 @@
 				75CCDDA324619B3D00AEEEC4 /* CustomContainer */,
 				75CCDDA024619A2800AEEEC4 /* Navigation */,
 				75CCDD9E24619A1100AEEEC4 /* Plain */,
+				75E419592464228D0099D193 /* ScrollOutsideChildScrollView */,
 				75CCDD9F24619A1B00AEEEC4 /* TabBar */,
 				75CCDDA82461A4A200AEEEC4 /* TabBar+Navigation */,
 				75B01FA7245C63F1007F2340 /* TableViewController.swift */,
@@ -146,6 +151,15 @@
 				75CCDDAB2461A5CE00AEEEC4 /* TabBar+Navigation.swift */,
 			);
 			path = "TabBar+Navigation";
+			sourceTree = "<group>";
+		};
+		75E419592464228D0099D193 /* ScrollOutsideChildScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				75E4195A246422C60099D193 /* ScrollExample.storyboard */,
+				75E4195C246422DB0099D193 /* ScrollExampleViewController.swift */,
+			);
+			path = ScrollOutsideChildScrollView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +223,7 @@
 				75B01FA0245C5D1F007F2340 /* LaunchScreen.storyboard in Resources */,
 				75B01F9D245C5D1F007F2340 /* Assets.xcassets in Resources */,
 				75CCDDAA2461A4B100AEEEC4 /* TabBar+Navigation.storyboard in Resources */,
+				75E4195B246422C60099D193 /* ScrollExample.storyboard in Resources */,
 				75CCDD982461968900AEEEC4 /* Navigation.storyboard in Resources */,
 				75B01F9B245C5D1D007F2340 /* Plain.storyboard in Resources */,
 				75CCDD9B246197C100AEEEC4 /* TabBar.storyboard in Resources */,
@@ -228,6 +243,7 @@
 				75CCDD922461937F00AEEEC4 /* ViewController.swift in Sources */,
 				75B01F98245C5D1D007F2340 /* PlainViewController.swift in Sources */,
 				75CCDD9D2461998B00AEEEC4 /* TabBarRootViewController.swift in Sources */,
+				75E4195D246422DB0099D193 /* ScrollExampleViewController.swift in Sources */,
 				75CCDDA72461A01700AEEEC4 /* CustomContainerRootViewController.swift in Sources */,
 				75B01FAA245C69DF007F2340 /* BottomSheetAnimator.swift in Sources */,
 				75B01FA8245C63F1007F2340 /* TableViewController.swift in Sources */,
