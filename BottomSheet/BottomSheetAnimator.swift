@@ -54,8 +54,18 @@ open class BottomSheetAnimator: NSObject {
     /// This should be bottom constraint from animatable view to super view / safe area
     @IBOutlet public weak var animatableConstraint: NSLayoutConstraint!
     
+    @IBOutlet public weak var animatableViewHeightConstraint: NSLayoutConstraint? {
+        didSet {
+            adjustAnimatableViewHeight()
+        }
+    }
+    
     /// This array should contains at least 2 values
-    public var availablePositions: [Position] = [.bottom, .middle, .top]
+    public var availablePositions: [Position] = [.bottom, .middle, .top] {
+        didSet {
+            adjustAnimatableViewHeight()
+        }
+    }
 
     /// Animatable view current position
     public var currentPosition: Position = .bottom {
@@ -74,25 +84,76 @@ open class BottomSheetAnimator: NSObject {
     public var additionalOffset: CGFloat = .zero
     
     public var animationDuration: TimeInterval = CATransaction.animationDuration()
+    
+    private func adjustAnimatableViewHeight() {
+        guard
+            let animatableViewHeightConstraint = animatableViewHeightConstraint
+        else {
+            return
+        }
+        
+        lazy var newConstraint: ((CGFloat?, NSLayoutConstraint?) -> NSLayoutConstraint?) = {
+            mulitiplier, constraint in
+            guard let constraint = constraint else { return nil }
+            let newConstraint = NSLayoutConstraint(item: constraint.firstItem,
+                                                   attribute: constraint.firstAttribute,
+                                                   relatedBy: constraint.relation,
+                                                   toItem: constraint.secondItem,
+                                                   attribute: constraint.secondAttribute,
+                                                   multiplier: mulitiplier ?? 0.000001,
+                                                   constant: constraint.constant
+            )
+            constraint.isActive = false
+            newConstraint.isActive = true
+            return newConstraint
+        }
+        
+        guard
+            !availablePositions.isEmpty,
+            let maxMultiplierValue = availablePositions.map({ $0.value }).max()
+        else {
+            let diff = abs(1 - animatableViewHeightConstraint.multiplier)
+            if diff > 0.00001 {
+                self.animatableViewHeightConstraint = newConstraint(
+                    1,
+                    animatableViewHeightConstraint
+                )
+            }
+            return
+        }
+        
+        let diff = abs(maxMultiplierValue - animatableViewHeightConstraint.multiplier)
+        guard diff > 0.000001 else { return }
+        self.animatableViewHeightConstraint = newConstraint(
+            maxMultiplierValue,
+            animatableViewHeightConstraint
+        )
+    }
         
     /// If you have scroll view inside animatable view - you should handle scroll view delegate and call this method when view is scrolled
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let contentOffset = scrollView.contentOffset
+        print("contentOffset \(contentOffset) last \(lastAnimatableScrollViewContentOffset) reachedTopPosition \(reachedTopPosition)")
         
         if lastAnimatableScrollViewContentOffset.y < contentOffset.y {
             // Scrolling up
             if reachedTopPosition {
                 lastAnimatableScrollViewContentOffset = contentOffset
+                print("line 1")
             } else {
                 scrollView.contentOffset = lastAnimatableScrollViewContentOffset
+                print("line 2")
             }
         } else {
             // Scrolling down
             if lastAnimatableScrollViewContentOffset.y <= .zero {
                 lastAnimatableScrollViewContentOffset = .zero
+                print("line 3")
                 guard !isAnimatableViewAtBottom else { return }
+                print("line 4")
                 scrollView.contentOffset = .zero
             } else {
+                print("line 5")
                 lastAnimatableScrollViewContentOffset = contentOffset
             }
         }
@@ -202,11 +263,13 @@ extension BottomSheetAnimator {
     
     open func height(for position: Position) -> CGFloat {
         let height = gestureView.frame.size.height - gestureView.frame.size.height * position.value - additionalOffset
+        print("height \(max(0, height))")
         return max(0, height)
     }
     
     open func setConstraint(_ constant: CGFloat, animated: Bool) {
         animatableConstraint.constant = constant
+        print("setConstraint \(constant)")
         guard animated else { return }
         UIView.animate(withDuration: animationDuration) {
             self.gestureView.layoutIfNeeded()
