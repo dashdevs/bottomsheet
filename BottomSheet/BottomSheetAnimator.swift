@@ -102,49 +102,28 @@ open class BottomSheetAnimator: NSObject {
     
     public var animationDuration: TimeInterval = CATransaction.animationDuration()
     
+    /// Adjusting animateble view height according to maximum position
     private func adjustAnimatableViewHeight() {
         guard
             let animatableViewHeightConstraint = animatableViewHeightConstraint
         else {
             return
         }
-        
-        lazy var newConstraint: ((CGFloat?, NSLayoutConstraint?) -> NSLayoutConstraint?) = {
-            mulitiplier, constraint in
-            guard let constraint = constraint else { return nil }
-            let newConstraint = NSLayoutConstraint(item: constraint.firstItem as Any,
-                                                   attribute: constraint.firstAttribute,
-                                                   relatedBy: constraint.relation,
-                                                   toItem: constraint.secondItem,
-                                                   attribute: constraint.secondAttribute,
-                                                   multiplier: mulitiplier ?? 0.000001,
-                                                   constant: constraint.constant
-            )
-            constraint.isActive = false
-            newConstraint.isActive = true
-            return newConstraint
-        }
-        
-        guard
-            !availablePositions.isEmpty,
-            let maxMultiplierValue = availablePositions.maxPosition?.value
-        else {
-            let diff = abs(1 - animatableViewHeightConstraint.multiplier)
-            if diff > 0.00001 {
-                self.animatableViewHeightConstraint = newConstraint(
-                    1,
-                    animatableViewHeightConstraint
-                )
-            }
-            return
-        }
-        
+        let maxMultiplierValue = availablePositions.maxPosition?.value ?? 1
         let diff = abs(maxMultiplierValue - animatableViewHeightConstraint.multiplier)
         guard diff > 0.000001 else { return }
-        self.animatableViewHeightConstraint = newConstraint(
-            maxMultiplierValue,
-            animatableViewHeightConstraint
+        let newConstraint = NSLayoutConstraint(
+            item: animatableViewHeightConstraint.firstItem as Any,
+            attribute: animatableViewHeightConstraint.firstAttribute,
+            relatedBy: animatableViewHeightConstraint.relation,
+            toItem: animatableViewHeightConstraint.secondItem,
+            attribute: animatableViewHeightConstraint.secondAttribute,
+            multiplier: maxMultiplierValue,
+            constant: animatableViewHeightConstraint.constant
         )
+        animatableViewHeightConstraint.isActive = false
+        newConstraint.isActive = true
+        self.animatableViewHeightConstraint = newConstraint
     }
         
     /// If you have scroll view inside animatable view - you should handle scroll view delegate and call this method when view is scrolled
