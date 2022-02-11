@@ -258,11 +258,11 @@ extension BottomSheetAnimator {
     }
     
     open func height(for position: Position) -> CGFloat {
-        var resizeHeight: CGFloat = 0
+        var adjustHeight: CGFloat = 0
         if let maxPosition = availablePositions.maxPosition, maxPosition.value < 1 {
-            resizeHeight = gestureView.frame.size.height * (1 - maxPosition.value)
+            adjustHeight = gestureView.frame.size.height * (1 - maxPosition.value)
         }
-        let height = gestureView.frame.size.height - gestureView.frame.size.height * position.value - additionalOffset - resizeHeight
+        let height = gestureView.frame.size.height - gestureView.frame.size.height * position.value - additionalOffset - adjustHeight
         return max(0, height)
     }
     
@@ -275,8 +275,19 @@ extension BottomSheetAnimator {
     }
     
     open func needsToScrollInsteadChangingPosition(for direction: PanGestureDirection) -> Bool {
-        guard allowChangingPositionOnlyWhenScrollViewIsScrolledUp, let scrollView = animatableScrollView, !scrollView.isDragging else { return false }
-        guard let topPosition = availablePositions.maxPosition, animatableConstraint.constant == height(for: topPosition) else { return false }
+        guard
+            allowChangingPositionOnlyWhenScrollViewIsScrolledUp,
+            let scrollView = animatableScrollView,
+            !scrollView.isDragging
+        else {
+            return false
+        }
+        guard
+            let topPosition = availablePositions.maxPosition,
+            animatableConstraint.constant == height(for: topPosition)
+        else {
+            return false
+        }
         // If we scrolling up from top position - we should allow scrolling child scroll view
         // If we scrolling down from top position - we should allow scrolling only when content offset is greater than zero
         return scrollView.contentOffset.y > 0 || direction == .up
