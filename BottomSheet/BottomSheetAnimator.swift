@@ -71,6 +71,7 @@ open class BottomSheetAnimator: NSObject {
     /// parent view height, it means, that only 80% of animatable view content will be
     /// showed. So, if this constraint is set, height of animatable view will be automatically adjusted to
     /// display all the contents.
+    /// Constraint should be set if maximum position is not equal to 1 (not .custom(1))
     @IBOutlet public weak var animatableViewHeightConstraint: NSLayoutConstraint? {
         didSet {
             adjustAnimatableViewHeight()
