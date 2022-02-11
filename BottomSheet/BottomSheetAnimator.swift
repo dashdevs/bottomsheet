@@ -7,9 +7,19 @@
 
 import UIKit
 
+extension BottomSheetAnimator.Positions {
+    var minPosition: BottomSheetAnimator.Position? {
+        self.min { $0.value < $1.value }
+    }
+    
+    var maxPosition: BottomSheetAnimator.Position? {
+        self.max { $1.value > $0.value }
+    }
+}
+
 open class BottomSheetAnimator: NSObject {
     /// This enum described animatable view position
-    public enum Position {
+    public enum Position: Comparable {
         case bottom
         case middle
         case top
@@ -27,6 +37,8 @@ open class BottomSheetAnimator: NSObject {
             }
         }
     }
+    
+    typealias Positions = [Position]
     
     public enum PanGestureDirection {
         case up
@@ -54,6 +66,11 @@ open class BottomSheetAnimator: NSObject {
     /// This should be bottom constraint from animatable view to super view / safe area
     @IBOutlet public weak var animatableConstraint: NSLayoutConstraint!
     
+    /// This constraint is used for adjusting animatable view height.
+    /// For example, if maximum position is top (0.8), and animatable view is constrained to be equal to
+    /// parent view height, it means, that only 80% of animatable view content will be
+    /// showed. So, if this constraint is set, height of animatable view will be automatically adjusted to
+    /// display all the contents.
     @IBOutlet public weak var animatableViewHeightConstraint: NSLayoutConstraint? {
         didSet {
             adjustAnimatableViewHeight()
@@ -110,7 +127,7 @@ open class BottomSheetAnimator: NSObject {
         
         guard
             !availablePositions.isEmpty,
-            let maxMultiplierValue = availablePositions.map({ $0.value }).max()
+            let maxMultiplierValue = availablePositions.maxPosition?.value
         else {
             let diff = abs(1 - animatableViewHeightConstraint.multiplier)
             if diff > 0.00001 {
@@ -133,27 +150,21 @@ open class BottomSheetAnimator: NSObject {
     /// If you have scroll view inside animatable view - you should handle scroll view delegate and call this method when view is scrolled
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let contentOffset = scrollView.contentOffset
-        print("contentOffset \(contentOffset) last \(lastAnimatableScrollViewContentOffset) reachedTopPosition \(reachedTopPosition)")
         
         if lastAnimatableScrollViewContentOffset.y < contentOffset.y {
             // Scrolling up
             if reachedTopPosition {
                 lastAnimatableScrollViewContentOffset = contentOffset
-                print("line 1")
             } else {
                 scrollView.contentOffset = lastAnimatableScrollViewContentOffset
-                print("line 2")
             }
         } else {
             // Scrolling down
             if lastAnimatableScrollViewContentOffset.y <= .zero {
                 lastAnimatableScrollViewContentOffset = .zero
-                print("line 3")
                 guard !isAnimatableViewAtBottom else { return }
-                print("line 4")
                 scrollView.contentOffset = .zero
             } else {
-                print("line 5")
                 lastAnimatableScrollViewContentOffset = contentOffset
             }
         }
@@ -187,7 +198,13 @@ extension BottomSheetAnimator: UIGestureRecognizerDelegate {
 
 extension BottomSheetAnimator {
     open func update(with offset: CGFloat, animated: Bool) {
-        guard isAvailableScroll(with: offset), let minPosition = availablePositions.first, let maxPosition = availablePositions.last else { return }
+        guard
+            isAvailableScroll(with: offset),
+            let minPosition = availablePositions.minPosition,
+            let maxPosition = availablePositions.maxPosition
+        else {
+            return
+        }
         var newValue = animatableConstraint.constant + offset
         
         let minPositionHeight = height(for: minPosition)
@@ -215,7 +232,7 @@ extension BottomSheetAnimator {
     
     open func nearestPosition(for value: CGFloat) -> Position {
         var closestDistance: CGFloat = .greatestFiniteMagnitude
-        var finalBoundaryPosition: Position = availablePositions.first ?? currentPosition
+        var finalBoundaryPosition: Position = availablePositions.maxPosition ?? currentPosition
         availablePositions.forEach { position in
             let positionHeight = height(for: position)
             let diff = abs(positionHeight - value)
@@ -230,7 +247,7 @@ extension BottomSheetAnimator {
 
 extension BottomSheetAnimator {
     public var reachedTopPosition: Bool {
-        guard let topPosition = availablePositions.last else { return false }
+        guard let topPosition = availablePositions.maxPosition else { return false }
         let topPositionHeight = height(for: topPosition)
         
         // Top position shouldn't be greater than gestureView.height
@@ -262,14 +279,16 @@ extension BottomSheetAnimator {
     }
     
     open func height(for position: Position) -> CGFloat {
-        let height = gestureView.frame.size.height - gestureView.frame.size.height * position.value - additionalOffset
-        print("height \(max(0, height))")
+        var resizeHeight: CGFloat = 0
+        if let maxPosition = availablePositions.maxPosition, maxPosition.value < 1 {
+            resizeHeight = gestureView.frame.size.height * (1 - maxPosition.value)
+        }
+        let height = gestureView.frame.size.height - gestureView.frame.size.height * position.value - additionalOffset - resizeHeight
         return max(0, height)
     }
     
     open func setConstraint(_ constant: CGFloat, animated: Bool) {
         animatableConstraint.constant = constant
-        print("setConstraint \(constant)")
         guard animated else { return }
         UIView.animate(withDuration: animationDuration) {
             self.gestureView.layoutIfNeeded()
@@ -278,14 +297,14 @@ extension BottomSheetAnimator {
     
     open func needsToScrollInsteadChangingPosition(for direction: PanGestureDirection) -> Bool {
         guard allowChangingPositionOnlyWhenScrollViewIsScrolledUp, let scrollView = animatableScrollView, !scrollView.isDragging else { return false }
-        guard let topPosition = availablePositions.last, animatableConstraint.constant == height(for: topPosition) else { return false }
+        guard let topPosition = availablePositions.maxPosition, animatableConstraint.constant == height(for: topPosition) else { return false }
         // If we scrolling up from top position - we should allow scrolling child scroll view
         // If we scrolling down from top position - we should allow scrolling only when content offset is greater than zero
         return scrollView.contentOffset.y > 0 || direction == .up
     }
     
     public var isAnimatableViewAtBottom: Bool {
-        guard let minPosition = availablePositions.first else { return false }
+        guard let minPosition = availablePositions.minPosition else { return false }
         return animatableConstraint.constant == height(for: minPosition)
     }
 }
