@@ -112,7 +112,7 @@ open class BottomSheetAnimator: NSObject {
         lazy var newConstraint: ((CGFloat?, NSLayoutConstraint?) -> NSLayoutConstraint?) = {
             mulitiplier, constraint in
             guard let constraint = constraint else { return nil }
-            let newConstraint = NSLayoutConstraint(item: constraint.firstItem,
+            let newConstraint = NSLayoutConstraint(item: constraint.firstItem as Any,
                                                    attribute: constraint.firstAttribute,
                                                    relatedBy: constraint.relation,
                                                    toItem: constraint.secondItem,
